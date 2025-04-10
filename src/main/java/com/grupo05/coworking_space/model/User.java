@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -27,7 +26,7 @@ import lombok.Data;
  * @Data es una anotación de Lombok que genera automáticamente los métodos equals, hashCode, toString y otros.
  */
 @Entity(name = "USER")
-@Table(name = "USER", schema = "coworking_space")
+@Table(name = "USERS", schema = "coworking_space")
 @Data
 public class User {
 	@Id
@@ -43,7 +42,7 @@ public class User {
 
 	@NotNull(message = "{field.null}")
 	@NotEmpty(message = "{field.empty}")
-	@Email(message = "{user.email}")
+	@Email(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "{user.email}")
 	@Column(name = "email", nullable = false, length = 100, unique = true)
 	private String email;
 
